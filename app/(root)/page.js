@@ -1,6 +1,6 @@
 "use client";
 // import Image from "next/image";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 // import {
 //   Card,
@@ -22,7 +22,7 @@ export default function Home() {
     fetch("https://dummyjson.com/products")
       .then((res) => res.json())
       .then((data) => {
-        console.log("data-------------", data);
+        // console.log("data-------------", data);
         setProductList(data.products);
       });
   };
@@ -31,29 +31,9 @@ export default function Home() {
     getProducts();
   }, []);
 
-  // console.log("productList-------------", productList);
-
   return (
-    <div className="pt-24 z-0 p-2">
+    <div className=" z-0 p-2">
       Home
-      {/* <Button>Click me</Button> */}
-      {/* <div>
-      <div>
-        <button
-          aria-label="Increment value"
-          onClick={() => dispatch(increment())}
-        >
-          Increment
-        </button>
-        <span>{count}</span>
-        <button
-          aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
-        >
-          Decrement
-        </button>
-      </div>
-    </div> */}
       <div className="grid sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 gap-4 grid-cols-2">
         {productList.length > 0 &&
           productList.map((product, index) => (

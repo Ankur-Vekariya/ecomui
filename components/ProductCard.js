@@ -5,20 +5,19 @@ import {
   Card,
   CardContent,
   CardFooter,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
-import { addToCart, removeFromCart } from "@/redux/slice/cartSlice";
+import { addToCart } from "@/redux/slice/cartSlice";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
+import { Button } from "./ui/button";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   return (
     <Card
-      className="relative max-w-sm  bg-white shadow-md rounded-3xl p-2 mx-1 my-3 cursor-pointer backdrop-blur-xl bg-white/30"
-      onClick={() => router.push(`/product/${product.id}`)}
+      className="relative max-w-sm  bg-white shadow-md rounded-3xl p-2 mx-1 my-3 cursor-pointer backdrop-blur-xl bg-white/30 z-0"
+      // onClick={() => router.push(`/product/${product.id}`)}
     >
       <CardContent className="overflow-x-hidden rounded-2xl relative bg-gradient-to-r from-amber-400 to-red-400">
         <div className="flex  w-full justify-center items-center">
@@ -30,7 +29,7 @@ const ProductCard = ({ product }) => {
             className="h-40 rounded-2xl w-full object-cover"
           />
           <p
-            className="absolute right-2 top-2 bg-white rounded-full p-2 cursor-pointer group"
+            className="absolute right-2 top-2 bg-white rounded-full p-2 cursor-pointer group z-50"
             onClick={() => dispatch(addToCart(product))}
           >
             <svg
@@ -50,31 +49,35 @@ const ProductCard = ({ product }) => {
           </p>
         </div>
       </CardContent>
-      <CardFooter className="mt-4 pl-2 mb-2 flex justify-between">
-        <div>
-          <p className="text-lg font-semibold text-gray-900 mb-0">
-            {product.title}
-          </p>
-          <p className="text-md text-gray-800 mt-0">
-            $<span>{product.price}</span>
-          </p>
+      <CardFooter className="flex flex-col">
+        <div className="mt-4 pl-2 mb-2 flex justify-between">
+          <div>
+            <p className="text-lg font-semibold text-gray-900 mb-0">
+              {product.title}
+            </p>
+            <p className="text-md text-gray-800 mt-0">
+              $<span>{product.price}</span>
+            </p>
+          </div>
+          <div className="flex flex-col-reverse mb-1 mr-4 group cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 group-hover:opacity-70"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="gray"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              />
+            </svg>
+          </div>
         </div>
-        <div className="flex flex-col-reverse mb-1 mr-4 group cursor-pointer">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 group-hover:opacity-70"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="gray"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-            />
-          </svg>
-        </div>
+
+        <Button onClick={() => router.push("/cart")}>Cart</Button>
       </CardFooter>
     </Card>
   );

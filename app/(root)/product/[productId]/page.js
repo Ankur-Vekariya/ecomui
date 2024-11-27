@@ -15,7 +15,7 @@ const ProductDetail = ({ params }) => {
     fetch("https://dummyjson.com/products/" + productId)
       .then((res) => res.json())
       .then((data) => {
-        console.log("data-------------", data);
+        // console.log("data-------------", data);
         setProductDetail(data);
       });
   };
@@ -23,9 +23,9 @@ const ProductDetail = ({ params }) => {
   useEffect(() => {
     getProductDetail();
   }, []);
-  console.log("productId===========", productId, productDetail);
+  // console.log("productId===========", productId, productDetail);
   return (
-    <div className="pt-24">
+    <div>
       {productDetail && (
         <Card className="w-full max-h-[50%] bg-gradient-to-r from-amber-400 to-red-400 rounded-3xl absolute shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
           <CardHeader className="flex flex-row justify-between items-center">
